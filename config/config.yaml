@@ -1,0 +1,20 @@
+excel:
+  name: 'futureloan_api_test.xlsx'
+
+host: 'http://api.lemonban.com/futureloan'
+
+tester:
+  mobile_phone: '18584086762'
+  pwd: 'yey1201abc'
+
+administrator:
+  mobile_phone: '18581512456'
+  pwd: 'yey1201abc'
+
+investor:
+  mobile_phone: '15883308876'
+  pwd: 'yey1201abc'
+
+investor_id: 2075791
+tester_id: 1026
+administrator_id: 2074456
