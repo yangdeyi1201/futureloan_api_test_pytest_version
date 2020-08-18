@@ -5,15 +5,18 @@ import pytest
 from middleware.handler import Handler
 from common.handler_request import visit_api
 from common.handler_mysql import MysqlHandler
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('audit')
 
 
+@allure.feature('审核接口')
 class TestAudit:
     @pytest.mark.parametrize('case_info', cases)
     @pytest.mark.parametrize('token', [Handler.yaml_conf['administrator']], indirect=True)
     @pytest.mark.parametrize('add_for_audit', [Handler.yaml_conf['tester']], indirect=True)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_audit(self, case_info, token, add_for_audit):
         url = Handler.yaml_conf['host']+case_info['url']
         method = 'patch'

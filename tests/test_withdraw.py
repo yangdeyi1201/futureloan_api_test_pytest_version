@@ -6,14 +6,17 @@ from middleware.handler import Handler
 from common.handler_request import visit_api
 from common.handler_mysql import MysqlHandler
 from decimal import Decimal
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('withdraw')
 
 
+@allure.feature('提现接口')
 class TestWithdraw:
     @pytest.mark.parametrize('case_info', cases)
     @pytest.mark.parametrize('token', [Handler.yaml_conf['tester']], indirect=True)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_withdraw(self, case_info, token, set_leaveamount_zero):
         url = Handler.yaml_conf['host']+case_info['url']
         method = case_info['method']

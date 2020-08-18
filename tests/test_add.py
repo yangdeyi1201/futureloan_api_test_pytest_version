@@ -5,14 +5,17 @@ import pytest
 from middleware.handler import Handler
 from common.handler_request import visit_api
 from common.handler_mysql import MysqlHandler
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('add')
 
 
+@allure.feature('加标接口')
 class TestAdd:
     @pytest.mark.parametrize('case_info', cases)
     @pytest.mark.parametrize('token', [Handler.yaml_conf['tester']], indirect=True)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_add(self, case_info, token, admin_login, add_count_before_admin):
         url = Handler.yaml_conf['host']+case_info['url']
         method = 'post'

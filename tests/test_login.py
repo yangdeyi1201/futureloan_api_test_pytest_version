@@ -5,13 +5,16 @@ import pytest
 from middleware.handler import Handler
 from common.handler_request import visit_api
 from jsonpath import jsonpath
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('login')
 
 
+@allure.feature('登录接口')
 class TestLogin:
     @pytest.mark.parametrize('case_info', cases)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_login(self, case_info):
         url = Handler.yaml_conf['host']+case_info['url']
         method = case_info['method']

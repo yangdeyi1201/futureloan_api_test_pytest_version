@@ -5,13 +5,16 @@ import pytest
 from middleware.handler import Handler
 from common.handler_request import visit_api
 from common.handler_mysql import MysqlHandler
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('register')
 
 
+@allure.feature('注册接口')
 class TestRegister:
     @pytest.mark.parametrize('case_info', cases)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_resister(self, case_info, member_before):
         url = Handler.yaml_conf['host'] + case_info['url']
         method = case_info['method']

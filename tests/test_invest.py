@@ -5,15 +5,18 @@ import pytest
 from middleware.handler import Handler
 from common.handler_request import visit_api
 from common.handler_mysql import MysqlHandler
+import allure
 
 excel = Handler.excel
 cases = excel.read_sheet('invest')
 
 
+@allure.feature('投资接口')
 class TestInvest:
     @pytest.mark.parametrize('case_info', cases)
     @pytest.mark.parametrize('token', [Handler.yaml_conf['investor']], indirect=True)
     @pytest.mark.parametrize('add_for_invest', [Handler.yaml_conf['tester']], indirect=True)
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_invest(self, case_info, token, admin_login, recharge_before_invest_and_set_zero_after, add_for_invest):
         url = Handler.yaml_conf['host']+case_info['url']
         method = 'post'
