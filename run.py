@@ -12,4 +12,4 @@ if __name__ == '__main__':
     if Path.exists(allure_raw_path):
         shutil.rmtree(allure_raw_path)
 
-    pytest.main(['alluredir=reports/allure-raw', '-s'])
+    pytest.main(['--alluredir=reports/allure-raw', '-s'])
