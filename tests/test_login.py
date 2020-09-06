@@ -12,6 +12,7 @@ cases = excel.read_sheet('login')
 
 
 @allure.feature('登录接口')
+@pytest.mark.login
 class TestLogin:
     @pytest.mark.parametrize('case_info', cases)
     @allure.severity(allure.severity_level.CRITICAL)

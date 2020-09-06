@@ -35,9 +35,9 @@ def token(request):
 @pytest.fixture(scope='class')
 def set_leaveamount_zero():
     """提现测试类执行前后置零测试帐户余额"""
-    MysqlHandler().query('update member set leave_amount = 0 where id = 1026;')
+    MysqlHandler().query('update member set leave_amount = 0 where id = {};'.format(Handler.tester_id))
     yield
-    MysqlHandler().query('update member set leave_amount = 0 where id = 1026;')
+    MysqlHandler().query('update member set leave_amount = 0 where id = {};'.format(Handler.tester_id))
 
 
 @pytest.fixture(scope='class')

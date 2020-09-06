@@ -43,13 +43,13 @@ class Handler(object):
     @property
     def other_member_id_more_than_zero(self):
         """取余额大于 0 元的非测试帐户 id"""
-        id_more_than_zero = MysqlHandler().query('select id from member where leave_amount > 0 and id != 1026;')['id']
+        id_more_than_zero = MysqlHandler().query('select id from member where leave_amount > 0 and id != {};'.format(Handler.tester_id))['id']
         return id_more_than_zero
 
     @property
     def loan_id_status_1(self):
         """取(借款)测试帐户最新借款的标id"""
-        return MysqlHandler().query('select id from loan where member_id = 1026 and `status` = 1 order by create_time desc;')['id']
+        return MysqlHandler().query('select id from loan where member_id = {} and `status` = 1 order by create_time desc;'.format(Handler.tester_id))['id']
 
     @property
     def not_exist_loan_id(self):
@@ -62,28 +62,28 @@ class Handler(object):
         """取(借款)测试帐户竞标中状态的标id"""
         loan_id_status_1 = self.loan_id_status_1
         MysqlHandler().query('update loan set `status` = 2 where id = {}'.format(loan_id_status_1))
-        return MysqlHandler().query('select id from loan where member_id = 1026 and `status` = 2 order by create_time desc;')['id']
+        return MysqlHandler().query('select id from loan where member_id = {} and `status` = 2 order by create_time desc;'.format(Handler.tester_id))['id']
 
     @property
     def loan_id_status_3(self):
         """取(借款)测试帐户还款中状态的标id"""
         loan_id_status_1 = self.loan_id_status_1
         MysqlHandler().query('update loan set `status` = 3 where id = {}'.format(loan_id_status_1))
-        return MysqlHandler().query('select id from loan where member_id = 1026 and `status` = 3 order by create_time desc;')['id']
+        return MysqlHandler().query('select id from loan where member_id = {} and `status` = 3 order by create_time desc;'.format(Handler.tester_id))['id']
 
     @property
     def loan_id_status_4(self):
         """取(借款)测试帐户还款完成状态的标id"""
         loan_id_status_1 = self.loan_id_status_1
         MysqlHandler().query('update loan set `status` = 4 where id = {}'.format(loan_id_status_1))
-        return MysqlHandler().query('select id from loan where member_id = 1026 and `status` = 4 order by create_time desc;')['id']
+        return MysqlHandler().query('select id from loan where member_id = {} and `status` = 4 order by create_time desc;'.format(Handler.tester_id))['id']
 
     @property
     def loan_id_status_5(self):
         """取(借款)测试帐户审核不通过状态的标id"""
         loan_id_status_1 = self.loan_id_status_1
         MysqlHandler().query('update loan set `status` = 5 where id = {}'.format(loan_id_status_1))
-        return MysqlHandler().query('select id from loan where member_id = 1026 and `status` = 5 order by create_time desc;')['id']
+        return MysqlHandler().query('select id from loan where member_id = {} and `status` = 5 order by create_time desc;'.format(Handler.tester_id))['id']
 
     @staticmethod
     def success_case(sheet_name, column, case_id, module_name):

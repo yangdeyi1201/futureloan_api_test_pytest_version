@@ -48,6 +48,7 @@ class TestAdd:
                     add_count_before_admin+1 == add_count_after_admin
                 else:
                     assert add_count_before_tester+1 == add_count_after_tester
+                    # assert MysqlHandler().query('select bidding_days from loan where member_id = {} order by create_time desc;'.format(Handler.tester_id))['bidding_days'] == data['bidding_days']
             else:
                 if '*' not in case_info['title']:
                     assert add_count_before_tester == add_count_after_tester
