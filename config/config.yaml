@@ -1,7 +1,7 @@
 excel:
   name: 'futureloan_api_test.xlsx'
 
-host: 'http://api.lemonban.com/futureloan'
+host: 'http://8.129.91.152:8766/futureloan'
 
 tester:
   mobile_phone: '18584086762'
@@ -15,6 +15,6 @@ investor:
   mobile_phone: '15883308876'
   pwd: 'yey1201abc'
 
-investor_id: 7961
-tester_id: 7953
-administrator_id: 7954
+investor_id:
+tester_id: 739
+administrator_id: 0201938
